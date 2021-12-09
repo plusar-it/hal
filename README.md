@@ -14,3 +14,14 @@ The consumer package is responsible for:
 - consuming the block numbers from the syncronisation channel
 - call the underlying DB layer to save the block number
 - consumer exists when the channel is closed ( by the producer)
+
+
+Unit tests cover basic scenarios for the producer and the consumer.
+
+
+## Todo
+
+1. Extend unit tests with more test cases for producer and consumer.
+2. Extend test coverage by writing unit tests for internal functions as well e.g. getTriggerMap
+3. Read configurations from a config file.
+4. Read commands (triggers) from a database, can be more easily read in pages, avoid having a large slice of commands in memory.
