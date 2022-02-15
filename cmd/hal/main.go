@@ -35,15 +35,15 @@ func main() {
 	}
 
 	producer := producer.NewProducer(multicaller, configuration.NoOfProducers, configuration.BatchSize)
-	consumer := consumer.NewConsumer(&db.Store{}, producer.BlockNumbers)
-
-	// start the consumer that will listen on the BlockNumbers channel, for messages from the producer
-	// the consumer will save all received messages in the db
-	consumer.Execute()
+	consumer := consumer.NewConsumer(&db.Store{}, producer.Results)
 
 	// the producer will start the producing gouritines and waits (blocks) until they have finished
 	// after the work is done, the channel is closed by the producer
-	producer.Execute(triggers)
+	syncChannel := producer.Execute(triggers)
+
+	// start the consumer that will listen on the BlockNumbers channel, for messages from the producer
+	// the consumer will save all received messages in the db
+	consumer.Execute(syncChannel)
 
 	// wait for the consumer to finish
 	// the consumer returns as soon as the channel is closed by the producer

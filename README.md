@@ -25,3 +25,5 @@ Unit tests cover basic scenarios for the producer and the consumer.
 2. Extend test coverage by writing unit tests for internal functions as well e.g. getTriggerMap
 3. Read configurations from a config file.
 4. Read commands (triggers) from a database, can be more easily read in pages, avoid having a large slice of commands in memory.
+
+###
